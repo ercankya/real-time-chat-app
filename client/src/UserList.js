@@ -3,14 +3,22 @@ import React from "react";
 const UserList = ({ users }) => {
   return (
     <div className="user-list">
-      <h3>Users</h3>
+      <div className="user-header-list">
+        <p>User List</p>
+      </div>
       <ul>
         {users.map((user, index) => (
           <li key={index}>
-            <img src={user.avatar} alt="User Avatar" />
             <div>
+              <div
+                className={`status-dot ${
+                  user.status === "Active" ? "online" : "offline"
+                }`}
+              ></div>
               <strong>{user.username}</strong>
-              <span>{user.status}</span>
+              <span>{`${new Date(user.joinDate).getHours()}:${new Date(
+                user.joinDate
+              ).getMinutes()}`}</span>
             </div>
           </li>
         ))}
